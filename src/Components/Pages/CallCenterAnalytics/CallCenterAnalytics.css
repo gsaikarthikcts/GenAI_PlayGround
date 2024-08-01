@@ -1,0 +1,47 @@
+.containerBox1{
+    background-color: rgba(255, 225, 225, 0.3);
+    padding: 2% 2%;
+    margin-right: 30px;
+}
+
+.containerBox2{
+   background-color: rgba(255, 225, 225, 0.3);
+   padding: 2% 2%;
+}
+
+.rowcontainer{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
+.paragraphtext{
+    font-size: 17px;
+}
+.rowcontainer2{
+    display: flex;
+    justify-content: center;
+    width: 105%;
+    
+}
+
+.titleheading{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.maincontainer{
+    margin-bottom: 77px;
+}
+
+@media only screen and (max-width: 720px) {
+    .containerBox1{
+        margin-right: 0px;
+    }
+
+    .containerBox2{
+        padding-top: 50px;
+     }
+
+}
