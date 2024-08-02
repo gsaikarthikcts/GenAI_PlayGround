@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import NavigationBar from "../../NavigationBar/NavigationBar";
 
 export default function SemanticSearch() {
   const [selectedOption, setSelectedOption] = useState("");
@@ -27,6 +28,7 @@ export default function SemanticSearch() {
   };
   return (
     <>
+    <NavigationBar/>
       <h2 className="titleheading">Semantic Search UI</h2>
       <br></br>
       <Container className="maincontainer">

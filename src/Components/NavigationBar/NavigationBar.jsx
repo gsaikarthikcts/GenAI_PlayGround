@@ -26,7 +26,7 @@ export default function NavigationBar(){
             <NavDropdown.Item as={Link} to="">Doc Proofread</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="">Extract Product Attributes</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="">Semantic Chatbot</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="summarize">Summarize</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/summarize">Summarize</NavDropdown.Item>
           </NavDropdown>
 
           <NavDropdown title="Semantic Search" className='navbartext' id="collapsible-nav-dropdown">

@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import NavigationBar from "../../NavigationBar/NavigationBar";
 export default function Summarize(){
     const [selectedOption, setSelectedOption] = useState("");
     const [selectedchainType, setSelectedchainType] = useState("");
@@ -31,6 +32,7 @@ export default function Summarize(){
     };
     return(
 <>
+<NavigationBar/>
       <h2 className="titleheading">Summarize Documents</h2>
       <br></br>
       <Container>

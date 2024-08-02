@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import NavigationBar from "../../NavigationBar/NavigationBar";
 
 export default function CallCenterAnalytics(){
     const [selectedOption, setSelectedOption] = useState("");
@@ -34,6 +35,7 @@ export default function CallCenterAnalytics(){
     };
     return(
         <>
+        <NavigationBar/>
         <h2 className="titleheading">Call Center Analytics</h2>
         <br></br>
         <Container className="maincontainer">

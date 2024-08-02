@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import NavigationBar from "../../NavigationBar/NavigationBar";
 
 export default function AudioTranscription(){
     const [selectedOption, setSelectedOption] = useState("");
@@ -32,6 +33,7 @@ export default function AudioTranscription(){
     };
     return(
         <>
+        <NavigationBar/>
         <h2 className="titleheading">Audio Transcription</h2>
         <br></br>
         <Container className="maincontainer">

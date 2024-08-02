@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import NavigationBar from "../../NavigationBar/NavigationBar";
 export default function DescribeImage() {
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -36,6 +37,7 @@ export default function DescribeImage() {
 
   return (
     <>
+    <NavigationBar/>
       <h2 className="titleheading">Describe Image</h2>
       <br></br>
       <Container className="maincontainer">
