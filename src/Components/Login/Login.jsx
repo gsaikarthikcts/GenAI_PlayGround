@@ -42,7 +42,7 @@ export default function Login() {
 
        
 
-        <Button variant="primary" type="submit" as={Link} to='/'>
+        <Button variant="primary" type="submit" as={Link} to='/home'>
           Login
         </Button>
       </Form>

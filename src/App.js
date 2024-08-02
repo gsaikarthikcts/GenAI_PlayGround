@@ -20,15 +20,13 @@ function App() {
       <BrowserRouter>
       <ConditionalHeader/>
       <Routes>
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="" element={<Home/>} />
+        <Route exact path="/gen_ai" element={<Login />} />
+        <Route exact path="/home" element={<Home/>} />
         <Route exact path="/ssearch" element={<SemanticSearch/>} />
         <Route exact path="/summarize" element={<Summarize/>} />
         <Route exact path="/audiotranscript" element={<AudioTranscription/>} />
         <Route exact path="/callcenteranalytics" element={<CallCenterAnalytics/>} />
         <Route exact path="/describe_image" element={<DescribeImage/>} />
-
-
       </Routes>
       <ConditionalFooter/>
     </BrowserRouter>
@@ -40,13 +38,13 @@ function App() {
 
 function ConditionalHeader(){
   const location= useLocation();
-  const hideNavbarPaths=['/login']
+  const hideNavbarPaths=['/gen_ai']
   return !hideNavbarPaths.includes(location.pathname)?<NavigationBar/> :null;
 }
 
 function ConditionalFooter(){
   const location= useLocation();
-  const hideNavbarPaths=['/login']
+  const hideNavbarPaths=['/gen_ai']
   return !hideNavbarPaths.includes(location.pathname)?<Footer/> :null;
 }
 
