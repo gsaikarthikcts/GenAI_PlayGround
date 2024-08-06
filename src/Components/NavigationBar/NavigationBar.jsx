@@ -35,10 +35,11 @@ export default function NavigationBar(){
           </NavDropdown>
 
           <NavDropdown title="Image" className='navbartext' id="collapsible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Image to Text</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2">Image to Text</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Text to Image</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Image Q&A</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/describe_image">Describe Image</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/generate_image">Generate Image</NavDropdown.Item>
           </NavDropdown>
 
           <NavDropdown title="Audio" className='navbartext' id="collapsible-nav-dropdown">
@@ -51,15 +52,26 @@ export default function NavigationBar(){
             <NavDropdown.Item href="#action/3.2">General Subtitles</NavDropdown.Item>
           </NavDropdown>
 
-          <NavDropdown title="Others" className='navbartext' id="collapsible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Vector Database Maintenance</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.1">Project Folder Maintenance</NavDropdown.Item>
-          </NavDropdown>
-
           <NavDropdown title="Agents" className='navbartext' id="collapsible-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Agent 1</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.1">Agent 2</NavDropdown.Item>
           </NavDropdown>
+
+          <NavDropdown title="Code" className='navbartext' id="collapsible-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">Code Optimization</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1">Code Review</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1">Code Analysis</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1">Code Conversion</NavDropdown.Item>
+
+
+          </NavDropdown>
+
+          <NavDropdown title="Others" className='navbartext custom-dropdown'  id="collapsible-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">Vector Database Maintenance</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1">Project Folder Maintenance</NavDropdown.Item>
+          </NavDropdown>
+
+          
 
           
 

@@ -1,13 +1,36 @@
-.navbartext{
-    margin-left: 6px;
-    margin-right: 6px;
-    color:midnightblue !important;
+.navbartext {
+  margin-left: 6px;
+  margin-right: 6px;
+  color: midnightblue !important;
 }
 
-
-
-.logoimg{
-    width:70%;
-    padding: 3% 0% 3% 0% ;
-
+.logoimg {
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
+.navbartext.custom-dropdown .dropdown-menu {
+  right: 0;
+  left: auto;
+  transform: none !important;
+  position: absolute !important;
+}
+
+.navbartext.custom-dropdown .dropdown-menu.show {
+  display: block;
+}
+
+@media screen and (max-width: 720px) {
+  .navbartext.custom-dropdown .dropdown-menu {
+    right: 0;
+    left: auto;
+    transform: none !important;
+    position: static !important;
+  }
+
+  .navbartext.custom-dropdown .dropdown-menu.show {
+    display: block;
+  }
+}
+

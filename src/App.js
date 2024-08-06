@@ -10,7 +10,8 @@ import Summarize from "./Components/Pages/Summarize/Summarize";
 import AudioTranscription from "./Components/Pages/AudioTranscription/AudioTranscription";
 import CallCenterAnalytics from "./Components/Pages/CallCenterAnalytics/CallCenterAnalytics";
 import DescribeImage from "./Components/Pages/DescribeImage/DescribeImage";
-
+import GenerateImage from "./Components/Pages/GenerateImage/GenerateImage"
+import VectorDatabase from "./Components/Pages/VectorDatabase/VectorDatabase";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route exact path="/audiotranscript" element={<AudioTranscription/>} />
         <Route exact path="/callcenteranalytics" element={<CallCenterAnalytics/>} />
         <Route exact path="/describe_image" element={<DescribeImage/>} />
+        <Route exact path="/generate_image" element={<GenerateImage/>} />
+        <Route exact path="/vector_database" element={<VectorDatabase/>} />
       </Routes>
       {/* <ConditionalFooter/> */}
     </BrowserRouter>

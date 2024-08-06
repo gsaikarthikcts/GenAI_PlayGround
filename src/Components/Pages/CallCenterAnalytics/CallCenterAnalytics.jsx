@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
+import Footer from "../../Footer/Footer"
 
 export default function CallCenterAnalytics(){
     const [selectedOption, setSelectedOption] = useState("");
@@ -126,6 +127,7 @@ export default function CallCenterAnalytics(){
           </Col>
         </Row>
       </Container>
+      <Footer/>
       </>
     )
 }

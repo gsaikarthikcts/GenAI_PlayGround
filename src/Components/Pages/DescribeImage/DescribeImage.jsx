@@ -6,6 +6,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
+import Footer from "../../Footer/Footer"
+
 export default function DescribeImage() {
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -105,6 +107,7 @@ export default function DescribeImage() {
         <br></br>
 
       </Container>
+      <Footer/>
     </>
   );
 }

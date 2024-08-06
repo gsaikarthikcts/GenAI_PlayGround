@@ -5,6 +5,10 @@ import "./Login.css";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import CognizantLogo from '../Images/Cognizant-Logo.png'
+import Image from 'react-bootstrap/Image';
 
 export default function Login() {
   const [validated, setValidated] = useState(false);
@@ -19,6 +23,19 @@ export default function Login() {
     setValidated(true);
   }
   return (
+<>
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Container>
+      <Navbar.Brand href="#home" className='navbartitle' >
+      <Image src={CognizantLogo} className='logoimg1' alt="Logo" />
+      </Navbar.Brand>
+      
+      
+    </Container>
+  </Navbar>
+
+
+
     <div className="formContainer">
       <Form
         className="form"
@@ -47,5 +64,6 @@ export default function Login() {
         </Button>
       </Form>
     </div>
+    </>
   );
 }
