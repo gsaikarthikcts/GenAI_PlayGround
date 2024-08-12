@@ -12,6 +12,20 @@ import CallCenterAnalytics from "./Components/Pages/CallCenterAnalytics/CallCent
 import DescribeImage from "./Components/Pages/DescribeImage/DescribeImage";
 import GenerateImage from "./Components/Pages/GenerateImage/GenerateImage"
 import VectorDatabase from "./Components/Pages/VectorDatabase/VectorDatabase";
+import ImageQA from "./Components/Pages/ImageQA/ImageQA";
+import CodeOptimization from "./Components/Pages/CodeOptimization/CodeOptimization";
+import CodeReview from "./Components/Pages/CodeReview/CodeReview";
+import CodeAnalysis from "./Components/Pages/CodeAnalysis/CodeAnalysis";
+import CodeConversion from "./Components/Pages/CodeConversion/CodeConversion";
+import ImageText from "./Components/Pages/ImageText/ImageText";
+import TextImage from "./Components/Pages/TextImage/TextImage";
+import ProductReview from "./Components/Pages/ProductReview/ProductReview";
+import FolderMaintenance from "./Components/Pages/FolderMaintenance/FolderMaintenance";
+import ManageVector from "./Components/Pages/ManageVector/ManageVector";
+import ProofRead from "./Components/Pages/ProofRead/ProofRead";
+import ProviderSearch from "./Components/Pages/ProviderSearch/ProviderSearch";
+import VideoSubtitles from "./Components/Pages/VideoSubtitles/VideoSubtitles";
+
 
 function App() {
   return (
@@ -23,13 +37,29 @@ function App() {
       <Routes>
         <Route exact path="/gen_ai" element={<Login />} />
         <Route exact path="/home" element={<Home/>} />
-        <Route exact path="/ssearch" element={<SemanticSearch/>} />
+        <Route exact path="/semantic_search" element={<SemanticSearch/>} />
         <Route exact path="/summarize" element={<Summarize/>} />
         <Route exact path="/audiotranscript" element={<AudioTranscription/>} />
         <Route exact path="/callcenteranalytics" element={<CallCenterAnalytics/>} />
         <Route exact path="/describe_image" element={<DescribeImage/>} />
         <Route exact path="/generate_image" element={<GenerateImage/>} />
         <Route exact path="/vector_database" element={<VectorDatabase/>} />
+        <Route exact path="/image_q&a" element={<ImageQA/>} />
+        <Route exact path="/code_optimization" element={<CodeOptimization/>} />
+        <Route exact path="/code_review" element={<CodeReview/>} />
+        <Route exact path="/code_analysis" element={<CodeAnalysis/>} />
+        <Route exact path="/code_conversion" element={<CodeConversion/>} />
+        <Route exact path="/image_text" element={<ImageText/>} />
+        <Route exact path="/text_image" element={<TextImage/>} />
+        <Route exact path="/product_review" element={<ProductReview/>} />
+        <Route exact path="/folder_maintenance" element={<FolderMaintenance/>} />
+        <Route exact path="/manage_vector" element={<ManageVector/>} />
+        <Route exact path="/proof_read" element={<ProofRead/>} />
+        <Route exact path="/provider_search" element={<ProviderSearch/>} />
+        <Route exact path="/video_subtitles" element={<VideoSubtitles/>} />
+
+
+
       </Routes>
       {/* <ConditionalFooter/> */}
     </BrowserRouter>
