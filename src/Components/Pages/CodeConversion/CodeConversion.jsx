@@ -42,7 +42,7 @@ export default function CodeConversion() {
     <>
       <NavigationBar />
       <h2 className="titleheading">Code Conversion</h2>
-      <br></br>
+      <br/>
       <Container className="maincontainer">
         <Row className="rowcontainer">
           <Col xs={12} md={5} className="containerBox1  ">
@@ -62,7 +62,7 @@ export default function CodeConversion() {
                   <option value="option2">LIama2</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group controlId="selectFromLanguage" className="formgroup">
                 <Form.Label>
@@ -84,7 +84,7 @@ export default function CodeConversion() {
                   <option value="option9">Typescript</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group controlId="selectToLanguage" className="formgroup">
                 <Form.Label>
@@ -106,7 +106,7 @@ export default function CodeConversion() {
                   <option value="option9">Typescript</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group controlId="textcontent" className="formgroup">
                 <Form.Label>
@@ -118,8 +118,8 @@ export default function CodeConversion() {
                   onChange={handleTextContent}
                 />
               </Form.Group>
-              <br></br>
-              <br></br>
+              <br/>
+              <br/>
 
               <Button variant="light" type="submit">
                 Convert
@@ -129,14 +129,14 @@ export default function CodeConversion() {
 
           <Col xs={12} md={6} className="containerBox2">
             <h4>Code Conversion</h4>
-            <br></br>
+            <br/>
             <h5>
               Select a model, choose the languages & enter your code. Your output will be displayed
               here...{" "}
             </h5>
           </Col>
         </Row>
-        <br></br>
+        <br/>
       </Container>
       <Footer />
     </>

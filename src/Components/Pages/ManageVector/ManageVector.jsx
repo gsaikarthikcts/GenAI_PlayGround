@@ -56,7 +56,7 @@ export default function ManageVector() {
                   <option value="option2">Google Palm</option>
                 </Form.Select>
               </Form.Group> 
-              <br></br>
+              <br/>
 
 
               <Form.Group controlId="selectOption" className="formgroup">
@@ -72,8 +72,8 @@ export default function ManageVector() {
                   <option value="option2">Demo Database</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
-              <br></br>
+              <br/>
+              <br/>
 
              <Button variant="light">Fetch Files</Button>
 

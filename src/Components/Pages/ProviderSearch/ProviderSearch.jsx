@@ -36,7 +36,7 @@ export default function ProviderSearch(){
         <>
         <NavigationBar/>
         <h2 className="titleheading">Provider Search</h2>
-        <br></br>
+        <br/>
         <Container className="maincontainer">
         <Row className="rowcontainer">
           <Col  xs={12} md={5}  className="containerBox1  "  >
@@ -57,7 +57,7 @@ export default function ProviderSearch(){
                   <option value="option2">LIama2</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group controlId="textcontent" className="formgroup">
                 <Form.Label>
@@ -65,7 +65,7 @@ export default function ProviderSearch(){
                 </Form.Label>
                 <Form.Control as="textarea" value={textInput} onChange={handleTextContent} />
               </Form.Group>
-              <br></br>
+              <br/>
 
 
               <Form.Group controlId="textcontent" className="formgroup">
@@ -74,7 +74,7 @@ export default function ProviderSearch(){
                 </Form.Label>
                 <Form.Control as="textarea" value={textAddressInput} onChange={handleAddressTextContent} />
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Button variant="light" type="submit">
                 Submit
@@ -85,7 +85,7 @@ export default function ProviderSearch(){
         
           <Col xs={12} md={6} className="containerBox2"  >
           <h4>Providers</h4>
-          <br></br>
+          <br/>
           <h5>Select a model and enter search query and address. Your output will be displayed here... </h5>
          
           </Col>

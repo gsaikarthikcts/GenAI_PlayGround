@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./AudioTranscription.css";
+import "./SearchChatbot.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -7,40 +7,47 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
 import Footer from "../../Footer/Footer"
+import InputGroup from 'react-bootstrap/InputGroup';
+import { FaSearch } from "react-icons/fa";
 
-export default function AudioTranscription(){
+
+export default function SearchChatbot(){
     const [selectedOption, setSelectedOption] = useState("");
-    const [selectedAudio, setselectedAudio] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
     const [textInput, settextInput] = useState("");
+    const [chatbotSearch, setchatbotSearch]=useState("");
   
     const handleOptionChange = (e) => {
       setSelectedOption(e.target.value);
     };
   
-    const handleAudioFile = (e) => {
-      // setselectedAudio(e.target.files[0]);
-      const audioFile=e.target.files[0];
-      if(audioFile){
-        const audioUrl=URL.createObjectURL(audioFile)
-        setselectedAudio(audioUrl)
-      }
+    const handleFileChange = (e) => {
+      setSelectedFile(e.target.files[0]);
     };
 
     const handleTextContent = (e) => {
       settextInput(e.target.value);
     };
+
+    const handleSearchChatbottext = (e) => {
+      setchatbotSearch(e.target.value);
+    };
+
+    const handleChatbotSearch = (e)=>{
+
+    }
   
     const handleFormSubmit = (e) => {
       e.preventDefault();
       // Handle form submission logic here
       console.log("Selected Option:", selectedOption);
-      console.log("Selected File:", selectedAudio);
+      console.log("Selected File:", selectedFile);
       // Reset form fields if needed
     };
     return(
         <>
         <NavigationBar/>
-        <h2 className="titleheading">Audio Transcription</h2>
+        <h2 className="titleheading">Semantic Search Chatbot</h2>
         <br/>
         <Container className="maincontainer">
         <Row className="rowcontainer">
@@ -68,38 +75,48 @@ export default function AudioTranscription(){
                 <Form.Label>
                   <h5>Upload File</h5>
                 </Form.Label>
-                <Form.Control type="file" accept="audio/*" onChange={handleAudioFile} />
+                <Form.Control type="file" onChange={handleFileChange} />
               </Form.Group>
-              <br/>
-
-              {selectedAudio && (
-                <div>
-                  <h5>Audio Preview</h5>
-                  <audio controls src={selectedAudio} type="audio/wav" />
-                </div>
-              )}
               <br/>
 
               <Form.Group controlId="textcontent" className="formgroup">
                 <Form.Label>
-                  <h5>Enter any keywords that are relevant to the context of the audio file:</h5>
+                  <h5>Enter any keywords that are relevant to the context of the file:</h5>
                 </Form.Label>
                 <Form.Control as="textarea" value={textInput} onChange={handleTextContent} />
               </Form.Group>
-              <br/><br/>
+              <br/>
+              
+              <h5>Vector Database:</h5>
+              <br/>
+              <h5>Project Folder:</h5>
+              <br/>
+              <h5>Files present in Vector Database:</h5>
+              <br/>
 
               <Button variant="light" type="submit">
-                Upload
+                Process Files
               </Button> 
             </Form>
           </Col>
           
         
           <Col xs={12} md={6} className="containerBox2"  >
-          <h4>Transcription</h4>
+          <h4>Chatbot</h4>
           <br/>
-          <h5>Select a model and upload the file. Your output will be displayed here... </h5>
-         
+          {/* <h5>Select a model and upload the file. Your output will be displayed here... </h5> */}
+          <InputGroup className="mb-3">
+        <Form.Control
+         type="text"
+         value={chatbotSearch}
+         onChange={handleSearchChatbottext}
+         placeholder="Type your message here"
+        />
+        <Button variant="primary" id="button-addon2" onClick={handleChatbotSearch}>
+          <FaSearch/>
+        </Button>
+      </InputGroup>
+
           </Col>
         </Row>
       </Container>

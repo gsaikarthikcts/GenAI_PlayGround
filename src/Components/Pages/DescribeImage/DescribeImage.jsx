@@ -7,22 +7,25 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
 import Footer from "../../Footer/Footer"
+import Image from "react-bootstrap/Image";
 
 export default function DescribeImage() {
   const [selectedOption, setSelectedOption] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedImage, setselectedImage] = useState(null);
   const [textInput, settextInput] = useState("");
   
- 
-
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
   
-
-  const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+  const handleImageFile = (e) => {
+    setselectedImage(e.target.files[0]);
+    const imageFile=e.target.files[0];
+    if(imageFile){
+      const imageUrl=URL.createObjectURL(imageFile)
+      setselectedImage(imageUrl);
+    }
   };
 
   const handleTextContent = (e) => {
@@ -33,7 +36,7 @@ export default function DescribeImage() {
     e.preventDefault();
     // Handle form submission logic here
     console.log("Selected Option:", selectedOption);
-    console.log("Selected File:", selectedFile);
+    console.log("Selected File:", selectedImage);
     // Reset form fields if needed
   };
 
@@ -41,7 +44,7 @@ export default function DescribeImage() {
     <>
     <NavigationBar/>
       <h2 className="titleheading">Describe Image</h2>
-      <br></br>
+      <br/>
       <Container className="maincontainer">
         <Row className="rowcontainer">
           <Col xs={12} md={5} className="containerBox1  ">
@@ -63,23 +66,25 @@ export default function DescribeImage() {
                   <option value="option2">LIama2</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group controlId="fileUpload" className="formgroup">
                 <Form.Label>
                   <h5>Upload File</h5>
                 </Form.Label>
-                <Form.Control type="file" onChange={handleFileChange} />
+                <Form.Control type="file" accept="image/*" onChange={handleImageFile} />
               </Form.Group>
-              <br></br>
+              <br/>
 
-              <Form.Group controlId="selectOptionAudio" className="formgroup">
-                <Form.Label>
+              {selectedImage && (
+                <div>
                   <h5>Image Preview</h5>
-                </Form.Label>
-               <div className="image-preview"></div>
-              </Form.Group>
-              <br></br>
+                  <Image src={selectedImage} alt="Image Preview" fluid />
+                </div>
+              )}
+              <br/>
+
+              
 
               <Form.Group controlId="textcontent" className="formgroup">
                 <Form.Label>
@@ -87,7 +92,7 @@ export default function DescribeImage() {
                 </Form.Label>
                 <Form.Control as="textarea" value={textInput} onChange={handleTextContent} />
               </Form.Group>
-              <br></br><br></br>
+              <br/><br/>
 
               <Button variant="light" type="submit">
                 Submit
@@ -97,14 +102,14 @@ export default function DescribeImage() {
 
           <Col xs={12} md={6} className="containerBox2">
             <h4>Describe Image</h4>
-            <br></br>
+            <br/>
             <h5>
               Select a model and upload the file. Your output will be displayed
               here...{" "}
             </h5>
           </Col>
         </Row>
-        <br></br>
+        <br/>
 
       </Container>
       <Footer/>

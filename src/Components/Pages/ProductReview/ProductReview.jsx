@@ -32,7 +32,7 @@ export default function ProductReview(){
         <>
         <NavigationBar/>
           <h2 className="titleheading">Summarize Product Reviews</h2>
-          <br></br>
+          <br/>
           <Container className="maincontainer">
             <Row className="rowcontainer">
               <Col xs={12} md={5} className="containerBox1  ">
@@ -54,7 +54,7 @@ export default function ProductReview(){
                       <option value="option2">LIama2</option>
                     </Form.Select>
                   </Form.Group>
-                  <br></br>
+                  <br/>
     
     
                   <Form.Group controlId="textcontent" className="formgroup">
@@ -63,7 +63,7 @@ export default function ProductReview(){
                     </Form.Label>
                     <Form.Control as="textarea" value={textInput} onChange={handleTextContent} />
                   </Form.Group>
-                  <br></br><br></br>
+                  <br/><br/>
     
                   <Button variant="light" type="submit">
                     Submit
@@ -73,14 +73,14 @@ export default function ProductReview(){
     
               <Col xs={12} md={6} className="containerBox2">
                 <h4>Product Review Summary:</h4>
-                <br></br>
+                <br/>
                 <h5>
                   Select a model and enter the product reviews. Your output will be displayed
                   here...{" "}
                 </h5>
               </Col>
             </Row>
-            <br></br>
+            <br/>
     
           </Container>
           <Footer/>

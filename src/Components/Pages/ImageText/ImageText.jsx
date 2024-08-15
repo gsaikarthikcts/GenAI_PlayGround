@@ -7,24 +7,29 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
 import Footer from "../../Footer/Footer"
+import Image from 'react-bootstrap/Image';
 
 export default function ImageText(){
     const [selectedOption, setSelectedOption] = useState("");
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedImage, setselectedImage] = useState(null);
   
     const handleOptionChange = (e) => {
       setSelectedOption(e.target.value);
     };
   
-    const handleFileChange = (e) => {
-      setSelectedFile(e.target.files[0]);
+    const handleImageFile = (e) => {
+      const file=e.target.files[0];
+      if(file){
+        const imgUrl= URL.createObjectURL(file);
+        setselectedImage(imgUrl);
+      }
     };
   
     const handleFormSubmit = (e) => {
       e.preventDefault();
       // Handle form submission logic here
       console.log("Selected Option:", selectedOption);
-      console.log("Selected File:", selectedFile);
+      console.log("Selected File:", selectedImage);
       // Reset form fields if needed
     };
     return(
@@ -32,7 +37,7 @@ export default function ImageText(){
         <>
         <NavigationBar/>
           <h2 className="titleheading">Image to Text</h2>
-          <br></br>
+          <br/>
           <Container className="maincontainer">
             <Row className="rowcontainer">
               <Col  xs={12} md={5}  className="containerBox1  "  >
@@ -52,16 +57,23 @@ export default function ImageText(){
                       <option value="option2">LIama2</option>
                     </Form.Select>
                   </Form.Group>
-                  <br></br>
+                  <br/>
     
                   <Form.Group controlId="fileUpload" className="formgroup">
                     <Form.Label>
                       <h5>Upload File</h5>
                     </Form.Label>
-                    <Form.Control type="file" onChange={handleFileChange} />
+                    <Form.Control type="file" accept="image/*" onChange={handleImageFile} />
                   </Form.Group>
-                  <br></br>
-                  <br></br>
+                  <br/>
+
+                  {selectedImage &&(
+                    <div>
+                      <h5>Image Preview</h5>
+                      <Image src={selectedImage} alt="Image Preview" fluid/>
+                    </div>
+                  )}
+                  <br/>
     
                   <Button variant="light" type="submit">
                     Convert
@@ -72,7 +84,7 @@ export default function ImageText(){
             
               <Col xs={12} md={6} className="containerBox2"  >
               <h4>Output</h4>
-              <br></br>
+              <br/>
               <h5>Select a model and upload the file. Your output will be displayed here... </h5>
              
               </Col>

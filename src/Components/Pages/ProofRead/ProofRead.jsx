@@ -35,7 +35,7 @@ export default function ProofRead() {
     <>
       <NavigationBar />
       <h2 className="titleheading">Proofread and Correct Content</h2>
-      <br></br>
+      <br/>
       <Container className="maincontainer">
         <Row className="rowcontainer">
           <Col xs={12} md={5} className="containerBox1  ">
@@ -55,7 +55,7 @@ export default function ProofRead() {
                   <option value="option3">Google Gemini Pro</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group className="mb-3">
                 <Form.Label><h5>Choose action</h5></Form.Label>
@@ -78,7 +78,7 @@ export default function ProofRead() {
                   onChange={handleChange}
                 />
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group controlId="textcontent" className="formgroup">
                 <Form.Label>
@@ -90,8 +90,8 @@ export default function ProofRead() {
                   onChange={handleTextContent}
                 />
               </Form.Group>
-              <br></br>
-              <br></br>
+              <br/>
+              <br/>
 
               <Button variant="light" type="submit">
                 Submit
@@ -101,7 +101,7 @@ export default function ProofRead() {
 
           <Col xs={12} md={6} className="containerBox2">
             <h4>Proof Reading Results</h4>
-            <br></br>
+            <br/>
             <h5>
               Select a model, choose the action and enter text for proof
               reading. Your output will be displayed here...{" "}

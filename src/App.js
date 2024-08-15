@@ -25,6 +25,8 @@ import ManageVector from "./Components/Pages/ManageVector/ManageVector";
 import ProofRead from "./Components/Pages/ProofRead/ProofRead";
 import ProviderSearch from "./Components/Pages/ProviderSearch/ProviderSearch";
 import VideoSubtitles from "./Components/Pages/VideoSubtitles/VideoSubtitles";
+import Translate from "./Components/Pages/Translate/Translate";
+import SearchChatbot from "./Components/Pages/SearchChatbot/SearchChatbot";
 
 
 function App() {
@@ -57,6 +59,9 @@ function App() {
         <Route exact path="/proof_read" element={<ProofRead/>} />
         <Route exact path="/provider_search" element={<ProviderSearch/>} />
         <Route exact path="/video_subtitles" element={<VideoSubtitles/>} />
+        <Route exact path="/translate" element={<Translate/>} />
+        <Route exact path="/search_chatbot" element={<SearchChatbot/>} />
+        
 
 
 

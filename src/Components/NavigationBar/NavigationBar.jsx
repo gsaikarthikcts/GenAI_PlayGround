@@ -8,7 +8,7 @@ import CognizantLogo from '../Images/Cognizant-Logo.png'
 import Image from 'react-bootstrap/Image';
 export default function NavigationBar(){
     return(
-        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+        <Navbar collapseOnSelect expand="xl" className="bg-body-tertiary">
     <Container>
       <Navbar.Brand href="#home" className='navbartitle' >
       <Image src={CognizantLogo} className='logoimg' alt="Logo" />
@@ -22,14 +22,15 @@ export default function NavigationBar(){
         <Nav.Link as={Link} to='/home' className='navbartext1'>Home</Nav.Link>
 
         <NavDropdown title="Text"  className='navbartext' id="collapsible-nav-dropdown" >
-            <NavDropdown.Item as={Link} to="/semantic_search">Semantic Search UI</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/proof_read">Doc Proofread</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="">Extract Product Attributes</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="">Semantic Chatbot</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/summarize">Summarize</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/translate">Language Translation</NavDropdown.Item>
           </NavDropdown>
 
           <NavDropdown title="Semantic Search" className='navbartext' id="collapsible-nav-dropdown">
+            <NavDropdown.Item as={Link} to="/search_chatbot">Semantic Search Chatbot</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/semantic_search">Semantic Search UI</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/description">Description</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/product_review">Product Review Summary</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/provider_search">Provider Search</NavDropdown.Item>
@@ -49,7 +50,7 @@ export default function NavigationBar(){
           </NavDropdown>
 
           <NavDropdown title="Video" className='navbartext' id="collapsible-nav-dropdown">
-          <NavDropdown.Item as={Link} to="/video_subtitles">Video Subtitles</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/video_subtitles">Video Subtitles</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.1">Video Condense</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">General Subtitles</NavDropdown.Item>
           </NavDropdown>
@@ -64,18 +65,12 @@ export default function NavigationBar(){
             <NavDropdown.Item as={Link} to="/code_review">Code Review</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/code_analysis">Code Analysis</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/code_conversion">Code Conversion</NavDropdown.Item>
-
-
           </NavDropdown>
 
           <NavDropdown title="Others" className='navbartext custom-dropdown'  id="collapsible-nav-dropdown">
             <NavDropdown.Item as={Link} to="/manage_vector">Vector Database Maintenance</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/folder_maintenance">Project Folder Maintenance</NavDropdown.Item>
           </NavDropdown>
-
-          
-
-          
 
           <Nav.Link as={Link} to='/gen_ai' className='navbartext1' >Logout</Nav.Link>
 

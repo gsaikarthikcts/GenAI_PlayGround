@@ -29,7 +29,7 @@ export default function VectorDatabase(){
         <>
         <NavigationBar/>
         <h2 className="titleheading">Vector Database Maintenance</h2>
-        <br></br>
+        <br/>
         <Container className="maincontainer">
         <Row className="rowcontainer">
           <Col  xs={12} md={5}  className="containerBox1  "  >
@@ -48,7 +48,7 @@ export default function VectorDatabase(){
                   <option value="option2">Google Palm</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group controlId="selectOptionAudio" className="formgroup">
                 <Form.Label>
@@ -65,10 +65,10 @@ export default function VectorDatabase(){
                   <option value="option2">Option D</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
              
-              <br></br>
+              <br/>
 
 
              
@@ -85,25 +85,25 @@ export default function VectorDatabase(){
         
           <Col xs={12} md={6} className="containerBox2"  >
           <h4>Call Transcript:</h4>
-          <br></br>
+          <br/>
           <h5>Select a model and upload the file. Your output will be displayed here... </h5>
          
           </Col>
         </Row>
-        <br></br>
+        <br/>
 
         <Row className="rowcontainer2">
         <Col xs={12} md={11} className="containerBox1 "  >
           <h4>Sentiment Analysis Output:</h4>
-          <br></br>
+          <br/>
           <h5>Call Intent:</h5>
           <p className="paragraphtext">Select a model and upload the file. Your output will be displayed here... </p>
          
-          <br></br>
+          <br/>
           <h5>Call Sentiment:</h5>
           <p className="paragraphtext">Select a model and upload the file. Your output will be displayed here... </p>
 
-          <br></br>
+          <br/>
           <h5>After Call Summary Notes:</h5>
           <p className="paragraphtext">Select a model and upload the file. Your output will be displayed here... </p>
           </Col>

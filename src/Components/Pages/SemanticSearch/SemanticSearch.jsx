@@ -31,7 +31,7 @@ export default function SemanticSearch() {
     <>
     <NavigationBar/>
       <h2 className="titleheading">Semantic Search UI</h2>
-      <br></br>
+      <br/>
       <Container className="maincontainer">
         <Row className="rowcontainer">
           <Col  xs={12} md={5}  className="containerBox1  "  >
@@ -51,7 +51,7 @@ export default function SemanticSearch() {
                   <option value="option2">LIama2</option>
                 </Form.Select>
               </Form.Group>
-              <br></br>
+              <br/>
 
               <Form.Group controlId="fileUpload" className="formgroup">
                 <Form.Label>
@@ -59,8 +59,8 @@ export default function SemanticSearch() {
                 </Form.Label>
                 <Form.Control type="file" onChange={handleFileChange} />
               </Form.Group>
-              <br></br>
-              <br></br>
+              <br/>
+              <br/>
 
               <Button variant="light" type="submit">
                 Upload
@@ -71,7 +71,7 @@ export default function SemanticSearch() {
         
           <Col xs={12} md={6} className="containerBox2"  >
           <h4>Output</h4>
-          <br></br>
+          <br/>
           <h5>Select a model and upload the file. Your output will be displayed here... </h5>
          
           </Col>
