@@ -39,7 +39,7 @@ function App() {
       <BrowserRouter>
       {/* <ConditionalHeader/> */}
       <Routes>
-        <Route exact path="/gen_ai" element={<Login />} />
+        <Route exact path="/GenAI_PlayGround" element={<Login />} />
         <Route exact path="/home" element={<Home/>} />
         <Route exact path="/semantic_search" element={<SemanticSearch/>} />
         <Route exact path="/summarize" element={<Summarize/>} />
