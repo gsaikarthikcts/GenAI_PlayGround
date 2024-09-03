@@ -7,10 +7,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import CognizantLogo from '../Images/Cognizant-Logo.png';
 import './Login.css';
+import { useNavigate } from "react-router-dom";
+
 
 export default function Login() {
   const [validated, setValidated] = useState(false);
   const [emailError, setEmailError] = useState('');
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -18,6 +21,7 @@ export default function Login() {
     const form = event.currentTarget;
     const emailInput = form.elements['floatingInput'];
     const emailValue = emailInput.value;
+     
 
     // Check validity of form and email
     if (form.checkValidity() === false || !emailValue.endsWith('@cognizant.com')) {
@@ -34,7 +38,8 @@ export default function Login() {
     setEmailError(''); // Clear any previous error
     setValidated(true);
     // Proceed with form submission or other actions here
-    window.location.href="/home";
+    //window.location.href="/home";
+    navigate("/home")
   }
 
   return (
