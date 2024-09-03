@@ -73,7 +73,7 @@ export default function NavigationBar(){
               <NavDropdown.Item as={Link} to="/folder_maintenance" disabled>Project Folder Maintenance*</NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link as={Link} to='/gen_ai' className='navbartext1' >Logout</Nav.Link>
+            <Nav.Link as={Link} to='/GenAI_PlayGround' className='navbartext1' >Logout</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
