@@ -27,6 +27,8 @@ import ProviderSearch from "./Components/Pages/ProviderSearch/ProviderSearch";
 import VideoSubtitles from "./Components/Pages/VideoSubtitles/VideoSubtitles";
 import Translate from "./Components/Pages/Translate/Translate";
 import SearchChatbot from "./Components/Pages/SearchChatbot/SearchChatbot";
+import ExtractProductAttributes from "./Components/Pages/ExtractProductAttributes/ExtractProductAttributes";
+import CodeComment from "./Components/Pages/CodeComment/CodeComment";
 
 
 function App() {
@@ -61,7 +63,8 @@ function App() {
         <Route exact path="/video_subtitles" element={<VideoSubtitles/>} />
         <Route exact path="/translate" element={<Translate/>} />
         <Route exact path="/search_chatbot" element={<SearchChatbot/>} />
-        
+        <Route exact path="/Extract_Product_Attributes" element={<ExtractProductAttributes/>} />
+        <Route exact path="/Code_Comment" element={<CodeComment/>} />
 
 
 

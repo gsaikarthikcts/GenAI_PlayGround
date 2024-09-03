@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./CodeOptimization.css";
+import "./CodeComment.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -7,14 +7,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
 import Footer from "../../Footer/Footer";
-import Spinner from "react-bootstrap/Spinner"; // Import Spinner component
+import Spinner from "react-bootstrap/Spinner";
 
-export default function CodeOptimization() {
+export default function CodeComment() {
   const [selectedOption, setSelectedOption] = useState("");
   const [textInput, setTextInput] = useState("");
-  const [optimizedCode, setOptimizedCode] = useState("");
-  const [loading, setLoading] = useState(false); // State to manage loading symbol
-  const [buttonText, setButtonText] = useState("Optimize Code"); // State to manage button text
+  const [commentedCode, setCommentedCode] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [buttonText, setButtonText] = useState("Comment Code");
   const [conversionSuccess, setConversionSuccess] = useState(false);
 
   const handleOptionChange = (e) => {
@@ -28,44 +28,48 @@ export default function CodeOptimization() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    setLoading(true); // Show loading symbol
-    setButtonText("Optimizing Code..."); // Change button text to "Optimizing Code..."
+    setLoading(true);
+    setButtonText("Commenting Code...");
     setConversionSuccess(false);
 
-    // Create a form data object to send the code and option to Flask
     const formData = new FormData();
     formData.append("code", textInput);
     formData.append("model", selectedOption);
 
     try {
-      const response = await fetch("http://localhost:5000/optimize", {
+      const response = await fetch("http://localhost:5000/comment", {
         method: "POST",
         body: formData,
       });
 
+      // Debug: Log the entire response
+      console.log("Response:", response);
+
       const data = await response.json();
+      // Debug: Log the data received
+      console.log("Data:", data);
 
       if (response.ok) {
-        setOptimizedCode(data.optimized_code);
-        setButtonText("Optimize Code"); // Change button text to "Code Optimized"
+        setCommentedCode(data.commented_code);
+        setButtonText("Comment Code");
         setConversionSuccess(true);
       } else {
-        setOptimizedCode("An error occurred. Please try again.");
-        setButtonText("Optimize Code"); // Reset button text
+        setCommentedCode("An error occurred. Please try again.");
+        setButtonText("Comment Code");
       }
     } catch (error) {
       console.error("Error:", error);
-      setOptimizedCode("An error occurred. Please try again.");
-      setButtonText("Optimize Code"); // Reset button text
+      setCommentedCode("An error occurred. Please try again.");
+      setButtonText("Comment Code");
     } finally {
-      setLoading(false); // Hide loading symbol
+      setLoading(false);
     }
   };
 
   return (
     <>
       <NavigationBar />
-      <h2 className="titleheading">Code Optimization</h2>
+      <h2 className="titleheading">Code Comment</h2>
       <br />
       <Container className="maincontainer">
         <Row className="rowcontainer">
@@ -115,12 +119,12 @@ export default function CodeOptimization() {
           </Col>
 
           <Col xs={12} md={6} className="containerBox2">
-            <h4>Optimized Code</h4>
+            <h4>Commented Code</h4>
             {conversionSuccess && (  // Conditionally render success message
-              <h3 className="sts">Code Optimized Successfully!!!</h3>
+              <h3 className="sts">Code Commented Successfully!!!</h3>
             )}
             <br />
-            <pre>{optimizedCode || "Select a model and enter your code. Your output will be displayed here..."}</pre>
+            <pre>{commentedCode || "Select a model and enter your code. Your output will be displayed here..."}</pre>
           </Col>
         </Row>
         <br />

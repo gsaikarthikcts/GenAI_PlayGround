@@ -6,92 +6,131 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
-import Footer from "../../Footer/Footer"
+import Footer from "../../Footer/Footer";
 import Image from 'react-bootstrap/Image';
+import Spinner from 'react-bootstrap/Spinner';
 
-export default function ImageText(){
-    const [selectedOption, setSelectedOption] = useState("");
-    const [selectedImage, setselectedImage] = useState(null);
-  
-    const handleOptionChange = (e) => {
-      setSelectedOption(e.target.value);
-    };
-  
-    const handleImageFile = (e) => {
-      const file=e.target.files[0];
-      if(file){
-        const imgUrl= URL.createObjectURL(file);
-        setselectedImage(imgUrl);
-      }
-    };
-  
-    const handleFormSubmit = (e) => {
-      e.preventDefault();
-      // Handle form submission logic here
-      console.log("Selected Option:", selectedOption);
-      console.log("Selected File:", selectedImage);
-      // Reset form fields if needed
-    };
-    return(
+export default function ImageText() {
+  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [outputText, setOutputText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [buttonText, setButtonText] = useState("Process Image");
+  const [conversionSuccess, setConversionSuccess] = useState(false);
 
-        <>
-        <NavigationBar/>
-          <h2 className="titleheading">Image to Text</h2>
-          <br/>
-          <Container className="maincontainer">
-            <Row className="rowcontainer">
-              <Col  xs={12} md={5}  className="containerBox1  "  >
-                <Form onSubmit={handleFormSubmit}>
-                  <Form.Group controlId="selectOption" className="formgroup">
-                    <Form.Label>
-                      <h5>Select a Language Model</h5>
-                    </Form.Label>
-                    <Form.Select
-                      value={selectedOption}
-                      onChange={handleOptionChange}
-                    >
-                      <option value="">Choose a model</option>
-                      <option value="option1">Azure OpenAI</option>
-                      <option value="option2">Google Palm</option>
-                      <option value="option3">Google Gemini Pro</option>
-                      <option value="option2">LIama2</option>
-                    </Form.Select>
-                  </Form.Group>
-                  <br/>
-    
-                  <Form.Group controlId="fileUpload" className="formgroup">
-                    <Form.Label>
-                      <h5>Upload File</h5>
-                    </Form.Label>
-                    <Form.Control type="file" accept="image/*" onChange={handleImageFile} />
-                  </Form.Group>
-                  <br/>
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
-                  {selectedImage &&(
-                    <div>
-                      <h5>Image Preview</h5>
-                      <Image src={selectedImage} alt="Image Preview" fluid/>
-                    </div>
-                  )}
-                  <br/>
-    
-                  <Button variant="light" type="submit">
-                    Convert
-                  </Button> 
-                </Form>
-              </Col>
-              
-            
-              <Col xs={12} md={6} className="containerBox2"  >
-              <h4>Output</h4>
-              <br/>
-              <h5>Select a model and upload the file. Your output will be displayed here... </h5>
-             
-              </Col>
-            </Row>
-          </Container>
-          <Footer/>
-        </>
+  const handleImageFile = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imgUrl = URL.createObjectURL(file);
+      setSelectedImage(imgUrl);
+    }
+  };
 
-    )
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (!selectedImage || !selectedOption) {
+      alert("Please select an image and a model before converting.");
+      return;
+    }
+
+    const formData = new FormData();
+    const file = e.target.fileUpload.files[0]; // Access the file from the form
+
+    formData.append("file", file);
+    formData.append("model", selectedOption);
+
+    setLoading(true); // Start loading
+    setButtonText("Processing Image..."); // Update button text while processing
+
+    fetch("http://localhost:5000/uploadimg", {
+      method: "POST",
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        setOutputText(data.text);
+        setLoading(false); // Stop loading
+        setButtonText("Process Image"); // Update button text after processing
+        setConversionSuccess(true);
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        setLoading(false); // Stop loading on error
+        setButtonText("Process Image"); // Reset button text on error
+      });
+  };
+
+  return (
+    <>
+      <NavigationBar />
+      <h2 className="titleheading">Image to Text</h2>
+      <br />
+      <Container className="maincontainer">
+        <Row className="rowcontainer">
+          <Col xs={12} md={5} className="containerBox1">
+            <Form onSubmit={handleFormSubmit}>
+              <Form.Group controlId="selectOption" className="formgroup">
+                <Form.Label>
+                  <h5>Select a Language Model</h5>
+                </Form.Label>
+                <Form.Select value={selectedOption} onChange={handleOptionChange}>
+                  <option value="" disabled>Choose a model</option>
+                  <option value="option1">Azure OpenAI</option>
+                  <option value="option2" disabled>Google Palm</option>
+                  <option value="option3" disabled>Google Gemini Pro</option>
+                  <option value="option4" disabled>Llama2</option>
+                </Form.Select>
+              </Form.Group>
+              <br />
+
+              <Form.Group controlId="fileUpload" className="formgroup">
+                <Form.Label>
+                  <h5>Upload File</h5>
+                </Form.Label>
+                <Form.Control type="file" accept="image/*" onChange={handleImageFile} />
+              </Form.Group>
+              <br />
+
+              {selectedImage && (
+                <div>
+                  <h5>Image Preview</h5>
+                  <Image src={selectedImage} alt="Image Preview" fluid />
+                </div>
+              )}
+              {conversionSuccess && (
+                <p className="sts1">Image Processed</p>
+              )}
+              <br />
+
+              <Button variant="light" type="submit" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Spinner animation="border" size="sm" /> {buttonText}
+                  </>
+                ) : (
+                  buttonText
+                )}
+              </Button>
+            </Form>
+          </Col>
+
+          <Col xs={12} md={6} className="containerBox2">
+            <h4>Output</h4>
+            <br />
+            {loading ? (
+              <Spinner animation="border" />
+            ) : (
+              <h5>{outputText || "Select a model and upload the file. Your output will be displayed here..."}</h5>
+            )}
+          </Col>
+        </Row>
+      </Container>
+      <Footer />
+    </>
+  );
 }

@@ -24,6 +24,12 @@
     margin-bottom: 50px;
 }
 
+.sts1{
+    /* background-color: rgb(69, 231, 69); */
+    font-weight: bold;
+    color: rgb(240, 39, 12);
+}
+
 @media only screen and (max-width: 720px) {
     .containerBox1{
         margin-right: 0px;

@@ -4,12 +4,12 @@
   align-items: center;
   margin-top: 70px;
 }
-
+ 
 .formtitle {
   font-weight: 800;
   padding-bottom: 15px;
 }
-
+ 
 .form {
   background-color: white;
   padding: 40px;
@@ -19,9 +19,15 @@
   color: black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+ 
 .logoimg1 {
   height: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+ 
+.emailError {
+  color: red;
+  font-size: 0.875rem; /* Smaller text size */
+  margin-top: 10px;
 }

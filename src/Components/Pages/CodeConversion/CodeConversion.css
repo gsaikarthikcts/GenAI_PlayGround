@@ -33,6 +33,12 @@
     margin-bottom: 0px;
 }
 
+.sts{
+    background-color: rgb(69, 231, 69);
+    border-radius:10px ;
+    padding-left: 10px;
+}
+
 
 @media only screen and (max-width: 720px) {
     .containerBox1{

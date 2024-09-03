@@ -8,44 +8,84 @@ import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
 import Footer from "../../Footer/Footer";
 import Image from "react-bootstrap/Image";
+import Spinner from "react-bootstrap/Spinner"; // Import Spinner component
 
 export default function ImageQA() {
   const [selectedOption, setSelectedOption] = useState("");
-  const [selectedImage, setselectedImage] = useState(null);
-  const [textInput, settextInput] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [textInput, setTextInput] = useState("");
+  const [output, setOutput] = useState(""); // State to hold output
+  const [loading, setLoading] = useState(false); // State to manage loading symbol
+  const [buttonText, setButtonText] = useState("Process Image"); // State to manage button text
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
   const handleImageFile = (e) => {
-    setselectedImage(e.target.files[0]);
     const imageFile = e.target.files[0];
     if (imageFile) {
       const imageUrl = URL.createObjectURL(imageFile);
-      setselectedImage(imageUrl);
+      setSelectedImage(imageUrl); // Set image preview
     }
   };
 
   const handleTextContent = (e) => {
-    settextInput(e.target.value);
+    setTextInput(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Selected Option:", selectedOption);
-    console.log("Selected File:", selectedImage);
-    // Reset form fields if needed
+
+    setLoading(true); // Show loading symbol
+    setButtonText("Processing Image..."); // Change button text to "Processing Image..."
+
+    const fileInput = document.querySelector('input[type="file"]');
+    const imageFile = fileInput?.files[0];
+
+    if (!imageFile) {
+      console.error("No file selected");
+      setLoading(false);
+      setButtonText("Process Image"); // Reset button text
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("question", textInput);
+    formData.append("image", imageFile);
+
+    try {
+      const response = await fetch("http://localhost:5000/ask-question-image", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setOutput(result.answer);
+        setButtonText("Image Processed"); // Change button text to "Image Processed"
+      } else {
+        setOutput(result.error || "An error occurred. Please try again.");
+        setButtonText("Process Image"); // Reset button text
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setOutput("An error occurred. Please try again.");
+      setButtonText("Process Image"); // Reset button text
+    } finally {
+      setLoading(false); // Hide loading symbol
+    }
   };
+
   return (
     <>
       <NavigationBar />
       <h2 className="titleheading">Image Q&A</h2>
-      <br/>
+      <br />
       <Container className="maincontainer">
         <Row className="rowcontainer">
-          <Col xs={12} md={5} className="containerBox1  ">
+          <Col xs={12} md={5} className="containerBox1">
             <Form onSubmit={handleFormSubmit}>
               <Form.Group controlId="selectOption" className="formgroup">
                 <Form.Label>
@@ -55,22 +95,27 @@ export default function ImageQA() {
                   value={selectedOption}
                   onChange={handleOptionChange}
                 >
-                  <option value="">Choose a model</option>
+                  <option value="" disabled>Choose a model</option>
                   <option value="option1">Azure OpenAI</option>
-                  <option value="option2">Google Palm</option>
-                  <option value="option3">Google Gemini Pro</option>
-                  <option value="option2">LIama2</option>
+                  <option value="option2" disabled>Google Palm</option>
+                  <option value="option3" disabled>Google Gemini Pro</option>
+                  <option value="option4" disabled>LLaMA2</option>
                 </Form.Select>
               </Form.Group>
-              <br/>
+              <br />
 
               <Form.Group controlId="fileUpload" className="formgroup">
                 <Form.Label>
                   <h5>Upload File</h5>
                 </Form.Label>
-                <Form.Control type="file" accept="image/*" onChange={handleImageFile} />
+                <Form.Control
+                  type="file"
+                  name="image"  // This name attribute is crucial for referencing the file input
+                  accept="image/*"
+                  onChange={handleImageFile}
+                />
               </Form.Group>
-              <br/>
+              <br />
 
               {selectedImage && (
                 <div>
@@ -78,7 +123,7 @@ export default function ImageQA() {
                   <Image src={selectedImage} alt="Image Preview" fluid />
                 </div>
               )}
-              <br/>
+              <br />
 
               <Form.Group controlId="textcontent" className="formgroup">
                 <Form.Label>
@@ -90,25 +135,31 @@ export default function ImageQA() {
                   onChange={handleTextContent}
                 />
               </Form.Group>
-              <br/>
-              <br/>
+              <br />
 
-              <Button variant="light" type="submit">
-                Submit
+              <Button variant="light" type="submit" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Spinner animation="border" role="status" size="sm">  {/* Display loading spinner */}
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                    {" "} {buttonText}
+                  </>
+                ) : (
+                  buttonText
+                )}
               </Button>
             </Form>
           </Col>
 
           <Col xs={12} md={6} className="containerBox2">
             <h4>Image Q&A</h4>
-            <br/>
-            <h5>
-              Select a model and upload the image file and ask a Question related to the image. Your output
-              will be displayed here...{" "}
-            </h5>
+            <br />
+            <h5>Your output will be displayed here...</h5>
+            {output && <p>{output}</p>}
           </Col>
         </Row>
-        <br/>
+        <br />
       </Container>
       <Footer />
     </>

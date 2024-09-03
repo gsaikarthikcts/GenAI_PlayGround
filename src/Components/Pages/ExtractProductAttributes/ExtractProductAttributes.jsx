@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./ProductReview.css";
+import "./ExtractProductAttributes.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -9,10 +9,10 @@ import NavigationBar from "../../NavigationBar/NavigationBar";
 import Footer from "../../Footer/Footer";
 import Spinner from "react-bootstrap/Spinner"; // Import Spinner for the loading symbol
 
-export default function ProductReviewSummary() {
+export default function ExtractProductAttributes() {
   const [selectedOption, setSelectedOption] = useState("");
   const [textInput, setTextInput] = useState("");
-  const [productAttributes, setProductAttributes] = useState(""); // To store backend output
+  const [productAttributes, setProductAttributes] = useState("");
   const [submitting, setSubmitting] = useState(false); // State to manage submitting status
   const [buttonText, setButtonText] = useState("Submit"); // State for button text
   const [conversionSuccess, setConversionSuccess] = useState(false);
@@ -36,7 +36,7 @@ export default function ProductReviewSummary() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/product-review', {
+      const response = await fetch('http://localhost:5000/product-name', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function ProductReviewSummary() {
 
       const data = await response.json();
       setProductAttributes(data.product_details);
-      setButtonText("Submit"); // Update button text after successful submission
+      setButtonText("Submit"); // Update button text after submission
       setConversionSuccess(true);
     } catch (error) {
       console.error("Error extracting product attributes:", error);
@@ -59,7 +59,7 @@ export default function ProductReviewSummary() {
   return (
     <>
       <NavigationBar />
-      <h2 className="titleheading">Product Review Summary</h2>
+      <h2 className="titleheading">Extract Product Attribute</h2>
       <br />
       <Container className="maincontainer">
         <Row className="rowcontainer">
@@ -78,16 +78,19 @@ export default function ProductReviewSummary() {
                 </Form.Select>
               </Form.Group>
               <br />
+
               <Form.Group controlId="textcontent" className="formgroup">
                 <Form.Label>
-                  <h5>Enter Product Review:</h5>
+                  <h5>Enter Product to be Extracted:</h5>
                 </Form.Label>
                 <Form.Control as="textarea" value={textInput} onChange={handleTextContent} />
               </Form.Group>
+
               {conversionSuccess && (
                 <p className="sts1">Successfull</p>
               )}
               <br />
+
               <Button variant="light" type="submit" disabled={submitting}>
                 {submitting ? (
                   <>
@@ -101,10 +104,10 @@ export default function ProductReviewSummary() {
           </Col>
 
           <Col xs={12} md={6} className="containerBox2">
-            <h4>Product Review Summary:</h4>
+            <h4>Product Attribute:</h4>
             <br />
             <h5>
-              {productAttributes ? productAttributes : "Select a model and enter the product review. Your summary will be displayed here..."}
+              {productAttributes ? productAttributes : "Select a model and enter the product reviews. Your output will be displayed here..."}
             </h5>
           </Col>
         </Row>

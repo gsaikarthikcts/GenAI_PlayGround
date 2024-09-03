@@ -29,7 +29,7 @@ export default function TextImage() {
   return (
     <>
       <NavigationBar />
-      <h2 className="titleheading">Image to Text</h2>
+      <h2 className="titleheading">Text ti Image</h2>
       <br/>
       <Container className="maincontainer">
         <Row className="rowcontainer">
