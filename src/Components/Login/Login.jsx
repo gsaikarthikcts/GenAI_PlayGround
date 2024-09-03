@@ -39,7 +39,7 @@ export default function Login() {
     setValidated(true);
     // Proceed with form submission or other actions here
     //window.location.href="/home";
-    navigate("/home")
+    navigate("/home");
   }
 
   return (
