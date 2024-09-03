@@ -2,7 +2,7 @@
   "name": "genai",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://JerinPaulJ.github.io/gen_ai",
+  "homepage": "http://gsaikarthikcts.github.io/GenAI_PlayGround",
   "dependencies": {
     "@react-email/components": "0.0.24",
     "@react-email/link": "0.0.10",
