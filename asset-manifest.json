@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/GenAI_PlayGround/static/css/main.39dc8a6a.css",
-    "main.js": "/GenAI_PlayGround/static/js/main.8013cb7b.js",
+    "main.css": "/GenAI_PlayGround/static/css/main.e971b0d8.css",
+    "main.js": "/GenAI_PlayGround/static/js/main.a8c13de6.js",
     "static/js/453.f7e4d7cf.chunk.js": "/GenAI_PlayGround/static/js/453.f7e4d7cf.chunk.js",
     "static/media/Cognizant-Logo.png": "/GenAI_PlayGround/static/media/Cognizant-Logo.4fa1b6dd97fba5539c9e.png",
     "static/media/Gellix-SemiBold.woff2": "/GenAI_PlayGround/static/media/Gellix-SemiBold.3a408fd3c82e322e2594.woff2",
     "static/media/Gellix-Regular.woff2": "/GenAI_PlayGround/static/media/Gellix-Regular.741dbed99b42c013c4f5.woff2",
     "index.html": "/GenAI_PlayGround/index.html",
-    "main.39dc8a6a.css.map": "/GenAI_PlayGround/static/css/main.39dc8a6a.css.map",
-    "main.8013cb7b.js.map": "/GenAI_PlayGround/static/js/main.8013cb7b.js.map",
+    "main.e971b0d8.css.map": "/GenAI_PlayGround/static/css/main.e971b0d8.css.map",
+    "main.a8c13de6.js.map": "/GenAI_PlayGround/static/js/main.a8c13de6.js.map",
     "453.f7e4d7cf.chunk.js.map": "/GenAI_PlayGround/static/js/453.f7e4d7cf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.39dc8a6a.css",
-    "static/js/main.8013cb7b.js"
+    "static/css/main.e971b0d8.css",
+    "static/js/main.a8c13de6.js"
   ]
 }
