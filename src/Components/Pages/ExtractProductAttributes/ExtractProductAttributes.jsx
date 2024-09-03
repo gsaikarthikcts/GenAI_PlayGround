@@ -15,7 +15,7 @@ export default function ExtractProductAttributes() {
   const [productAttributes, setProductAttributes] = useState("");
   const [submitting, setSubmitting] = useState(false); // State to manage submitting status
   const [buttonText, setButtonText] = useState("Submit"); // State for button text
-  const [conversionSuccess, setConversionSuccess] = useState(false);
+  // const [conversionSuccess, setConversionSuccess] = useState(false);
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -47,7 +47,7 @@ export default function ExtractProductAttributes() {
       const data = await response.json();
       setProductAttributes(data.product_details);
       setButtonText("Submit"); // Update button text after submission
-      setConversionSuccess(true);
+      // setConversionSuccess(true);
     } catch (error) {
       console.error("Error extracting product attributes:", error);
       setButtonText("Submission Failed"); // Handle errors
@@ -86,9 +86,9 @@ export default function ExtractProductAttributes() {
                 <Form.Control as="textarea" value={textInput} onChange={handleTextContent} />
               </Form.Group>
 
-              {conversionSuccess && (
+              {/* {conversionSuccess && (
                 <p className="sts1">Successfull</p>
-              )}
+              )} */}
               <br />
 
               <Button variant="light" type="submit" disabled={submitting}>

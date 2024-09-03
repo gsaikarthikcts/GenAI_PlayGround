@@ -165,7 +165,7 @@ export default function CodeConversion() {
           <Col xs={12} md={6} className="containerBox2">
             <h4>Code Conversion</h4>
             {conversionSuccess && (  // Conditionally render success message
-              <h3 className="sts">Code Converted Successfully!!!</h3>
+              <p className="sts">Code Converted Successfully!!!</p>
             )}
             <br />
             <pre>{convertedCode || "Select a model, choose the languages & enter your code. Your output will be displayed here..."}</pre>

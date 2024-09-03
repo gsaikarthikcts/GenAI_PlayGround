@@ -103,7 +103,7 @@ export default function ImageText() {
                 </div>
               )}
               {conversionSuccess && (
-                <p className="sts1">Image Processed</p>
+                <p className="sts1">Image Uploaded Successfull</p>
               )}
               <br />
 

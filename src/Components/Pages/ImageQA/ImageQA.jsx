@@ -17,6 +17,8 @@ export default function ImageQA() {
   const [output, setOutput] = useState(""); // State to hold output
   const [loading, setLoading] = useState(false); // State to manage loading symbol
   const [buttonText, setButtonText] = useState("Process Image"); // State to manage button text
+  const [conversionSuccess, setConversionSuccess] = useState(false);
+  
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -64,7 +66,8 @@ export default function ImageQA() {
 
       if (response.ok) {
         setOutput(result.answer);
-        setButtonText("Image Processed"); // Change button text to "Image Processed"
+        setButtonText("Process Image"); // Change button text to "Image Processed"
+        setConversionSuccess(true);
       } else {
         setOutput(result.error || "An error occurred. Please try again.");
         setButtonText("Process Image"); // Reset button text
@@ -135,6 +138,9 @@ export default function ImageQA() {
                   onChange={handleTextContent}
                 />
               </Form.Group>
+              {conversionSuccess && (
+                <p className="sts1">Image Uploaded Successfull</p>
+              )}
               <br />
 
               <Button variant="light" type="submit" disabled={loading}>

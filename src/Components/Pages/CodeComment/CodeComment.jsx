@@ -121,7 +121,7 @@ export default function CodeComment() {
           <Col xs={12} md={6} className="containerBox2">
             <h4>Commented Code</h4>
             {conversionSuccess && (  // Conditionally render success message
-              <h3 className="sts">Code Commented Successfully!!!</h3>
+              <p className="sts">Code Commented Successfully!!!</p>
             )}
             <br />
             <pre>{commentedCode || "Select a model and enter your code. Your output will be displayed here..."}</pre>

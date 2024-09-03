@@ -16,7 +16,7 @@ export default function ProofRead() {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [conversionSuccess, setConversionSuccess] = useState(false);
+  // const [conversionSuccess, setConversionSuccess] = useState(false);
 
   const handleChange = (e) => {
     setSelectedRadioOption(e.target.value);
@@ -49,7 +49,7 @@ export default function ProofRead() {
       const data = await response.json();
       if (response.ok) {
         setResult(data.result);
-        setConversionSuccess(true);
+        // setConversionSuccess(true);
       } else {
         console.error(data.error);
         setResult("Error occurred");
@@ -107,9 +107,9 @@ export default function ProofRead() {
                 <Form.Label><h5>Enter Text for Proof Reading:</h5></Form.Label>
                 <Form.Control as="textarea" value={textInput} onChange={handleTextContent}/>
               </Form.Group>
-              {conversionSuccess && ( 
+              {/* {conversionSuccess && ( 
                 <p className="sts1">Successfull</p>
-              )}
+              )} */}
               <br></br>
               <Button variant="light" type="submit" disabled={loading}>
                 {loading ? (

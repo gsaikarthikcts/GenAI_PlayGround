@@ -117,7 +117,7 @@ export default function CodeOptimization() {
           <Col xs={12} md={6} className="containerBox2">
             <h4>Optimized Code</h4>
             {conversionSuccess && (  // Conditionally render success message
-              <h3 className="sts">Code Optimized Successfully!!!</h3>
+              <p className="sts">Code Optimized Successfully!!!</p>
             )}
             <br />
             <pre>{optimizedCode || "Select a model and enter your code. Your output will be displayed here..."}</pre>

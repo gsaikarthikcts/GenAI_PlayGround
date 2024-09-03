@@ -114,7 +114,7 @@ export default function SemanticSearch() {
                 <Form.Control type="file" onChange={handleFileChange} />
               </Form.Group>
               {conversionSuccess && (
-                <p className="sts1">RAG Upload Successfully</p>
+                <p className="sts1">Doc Uploaded Successfull</p>
               )}
               <br />
 
