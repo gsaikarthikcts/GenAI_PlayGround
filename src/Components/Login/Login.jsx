@@ -61,7 +61,7 @@ export default function Login() {
         >
           <h2 className="formtitle">Cognizant Gen AI</h2>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <FloatingLabel controlId="floatingInput" label="Provide Email address" className="mb-3">
+            <FloatingLabel controlId="floatingInput" label="Provide a Valid Cognizant Email ID" className="mb-3">
               <Form.Control type="email" placeholder="Enter email" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid email

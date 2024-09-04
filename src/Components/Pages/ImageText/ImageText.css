@@ -28,6 +28,12 @@
   color: rgb(74, 238, 41);
 }
 
+.error-text{
+  color: red;
+  font-size: 12px;
+  margin: 5px;
+}
+
 @media only screen and (max-width: 720px) {
   .containerBox1 {
     margin-right: 0px;

@@ -1,16 +1,21 @@
-.footer-container{
+.footer-container {
     display: flex;
+    flex-direction: column;
+    /* Arrange elements vertically */
     justify-content: center;
     align-items: center;
     margin-top: 20px;
 }
 
-.footer-description{
+.footer-description {
     font-size: 15px;
     font-weight: bold;
+    margin: 0;
+    /* Remove margin to eliminate gaps */
+    padding: 0;
+    /* Ensure no padding is added */
 }
 
-.footer-description1{
-    font-size: 15px;
-    font-weight: bold;
+.link {
+    color: rgb(29, 5, 133);
 }

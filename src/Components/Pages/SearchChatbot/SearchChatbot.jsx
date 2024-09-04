@@ -7,25 +7,38 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
 import Footer from "../../Footer/Footer";
-import InputGroup from 'react-bootstrap/InputGroup';
+import InputGroup from "react-bootstrap/InputGroup";
 import { FaSearch } from "react-icons/fa";
-import Spinner from "react-bootstrap/Spinner"; // Import Spinner for the loading symbol
+import Spinner from "react-bootstrap/Spinner";
 
 export default function SearchChatbot() {
     const [selectedOption, setSelectedOption] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
     const [chatbotSearch, setChatbotSearch] = useState("");
     const [chatHistory, setChatHistory] = useState([]);
-    const [processingFile, setProcessingFile] = useState(false); // State to manage file processing
-    const [fileStatus, setFileStatus] = useState(""); // State to manage file status
+    const [processingFile, setProcessingFile] = useState(false);
+    const [fileStatus, setFileStatus] = useState("");
     const [conversionSuccess, setConversionSuccess] = useState(false);
+    const [fileError, setFileError] = useState(""); // State to manage file errors
 
     const handleOptionChange = (e) => {
         setSelectedOption(e.target.value);
     };
 
     const handleFileChange = (e) => {
-        setSelectedFile(e.target.files[0]);
+        const file = e.target.files[0];
+        if (file) {
+            if (file.type !== "application/pdf") {
+                setFileError("Only PDF files are allowed.");
+                setSelectedFile(null);
+            } else if (file.size > 2 * 1024 * 1024) {
+                setFileError("File size should not exceed 2MB.");
+                setSelectedFile(null);
+            } else {
+                setFileError("");
+                setSelectedFile(file);
+            }
+        }
     };
 
     const handleChatbotSearch = (e) => {
@@ -36,7 +49,7 @@ export default function SearchChatbot() {
         e.preventDefault();
         if (selectedFile) {
             setProcessingFile(true);
-            setFileStatus(""); // Clear any previous file status
+            setFileStatus("");
 
             const formData = new FormData();
             formData.append("file", selectedFile);
@@ -44,15 +57,15 @@ export default function SearchChatbot() {
             try {
                 const response = await fetch("http://localhost:5000/upload-pdf", {
                     method: "POST",
-                    body: formData
+                    body: formData,
                 });
                 const data = await response.json();
-                setChatHistory(prev => [...prev, { type: "bot", content: data.message }]);
-                setFileStatus("Process File"); // Update file status after successful submission
+                setChatHistory((prev) => [...prev, { type: "bot", content: data.message }]);
+                setFileStatus("Process File");
                 setConversionSuccess(true);
             } catch (error) {
                 console.error("Error processing file:", error);
-                setFileStatus("File Processing Failed"); // Update status in case of error
+                setFileStatus("File Processing Failed");
             } finally {
                 setProcessingFile(false);
             }
@@ -60,22 +73,22 @@ export default function SearchChatbot() {
     };
 
     const handleQuestionSubmit = async () => {
-        setChatHistory(prev => [...prev, { type: "user", content: chatbotSearch }]);
+        setChatHistory((prev) => [...prev, { type: "user", content: chatbotSearch }]);
 
         try {
             const response = await fetch("http://localhost:5000/ask-question", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ question: chatbotSearch })
+                body: JSON.stringify({ question: chatbotSearch }),
             });
             const data = await response.json();
-            setChatHistory(prev => [...prev, { type: "bot", content: data.answer }]);
+            setChatHistory((prev) => [...prev, { type: "bot", content: data.answer }]);
         } catch (error) {
             console.error("Error submitting question:", error);
         } finally {
-            setChatbotSearch(""); // Clear the input field
+            setChatbotSearch("");
         }
     };
 
@@ -92,15 +105,20 @@ export default function SearchChatbot() {
                                 <Form.Label>
                                     <h5>Select a Language Model</h5>
                                 </Form.Label>
-                                <Form.Select
-                                    value={selectedOption}
-                                    onChange={handleOptionChange}
-                                >
-                                    <option value="" disabled>Choose a model</option>
+                                <Form.Select value={selectedOption} onChange={handleOptionChange}>
+                                    <option value="" disabled>
+                                        Choose a model
+                                    </option>
                                     <option value="option1">Azure OpenAI</option>
-                                    <option value="option2" disabled>Google Palm</option>
-                                    <option value="option3" disabled>Google Gemini Pro</option>
-                                    <option value="option4" disabled>Llama2</option>
+                                    <option value="option2" disabled>
+                                        Google Palm
+                                    </option>
+                                    <option value="option3" disabled>
+                                        Google Gemini Pro
+                                    </option>
+                                    <option value="option4" disabled>
+                                        Llama2
+                                    </option>
                                 </Form.Select>
                             </Form.Group>
                             <br />
@@ -109,9 +127,10 @@ export default function SearchChatbot() {
                                     <h5>Upload File</h5>
                                 </Form.Label>
                                 <Form.Control type="file" onChange={handleFileChange} />
+                                {fileError && <p className="error-text">{fileError}</p>} {/* Error message */}
                             </Form.Group>
                             {conversionSuccess && (
-                                <p className="sts1">Doc Uploaded Successfull</p>
+                                <p className="sts1">Doc Uploaded Successfully</p>
                             )}
                             <br />
                             <Button variant="light" type="submit" disabled={processingFile}>
@@ -120,7 +139,7 @@ export default function SearchChatbot() {
                                         <Spinner animation="border" size="sm" /> Processing File...
                                     </>
                                 ) : (
-                                    fileStatus || "Process File" // Show fileStatus or default text
+                                    fileStatus || "Process File"
                                 )}
                             </Button>
                         </Form>

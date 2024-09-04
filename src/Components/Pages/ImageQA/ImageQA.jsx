@@ -135,7 +135,7 @@ export default function ImageQA() {
                   accept=".png, .jpg, .jpeg"
                   onChange={handleImageFile}
                 />
-                {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+                {errorMessage && <p className="error-text">{errorMessage}</p>}
 </Form.Group>
 <br />
  

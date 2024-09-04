@@ -39,3 +39,9 @@ button .spinner-border {
     font-weight: bold;
     color: rgb(74, 238, 41);
 }
+
+.error-text{
+    color: red;
+    font-size: 12px;
+    margin: 5px;
+  }

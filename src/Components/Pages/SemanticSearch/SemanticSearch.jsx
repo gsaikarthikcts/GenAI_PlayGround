@@ -13,11 +13,13 @@ export default function SemanticSearch() {
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [question, setQuestion] = useState("");
+  const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState("");
   const [submittingQuestion, setSubmittingQuestion] = useState(false);
   const [conversionSuccess, setConversionSuccess] = useState(false);
+  const [fileError, setFileError] = useState(""); // New state for file errors
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -25,11 +27,17 @@ export default function SemanticSearch() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.size <= 2 * 1024 * 1024) { // 2MB size limit
-      setSelectedFile(file);
-    } else {
-      alert("File size must be less than 2MB.");
-      setSelectedFile(null);
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        setFileError("File size exceeds 2MB. Please upload a smaller file.");
+        setSelectedFile(null);
+      } else if (file.type !== "application/pdf") {
+        setFileError("Only PDF files are allowed.");
+        setSelectedFile(null);
+      } else {
+        setFileError("");
+        setSelectedFile(file);
+      }
     }
   };
 
@@ -46,7 +54,7 @@ export default function SemanticSearch() {
           method: "POST",
           body: formData,
         });
-        await response.json();
+        const data = await response.json();
         setUploadStatus("Uploaded");
         setConversionSuccess(true);
       } catch (error) {
@@ -62,8 +70,6 @@ export default function SemanticSearch() {
     e.preventDefault();
     if (question.trim()) {
       setSubmittingQuestion(true);
-      setAnswers([]); // Clear previous answers
-
       try {
         const response = await fetch("http://localhost:5000/ask-question", {
           method: "POST",
@@ -73,7 +79,8 @@ export default function SemanticSearch() {
           body: JSON.stringify({ question }),
         });
         const data = await response.json();
-        setAnswers([data.answer]); // Set the new answer
+        setQuestions([...questions, question]);
+        setAnswers([...answers, data.answer]);
         setQuestion("");
       } catch (error) {
         console.error("Error submitting question:", error);
@@ -84,6 +91,7 @@ export default function SemanticSearch() {
   };
 
   const handleEnd = () => {
+    setQuestions([]);
     setAnswers([]);
   };
 
@@ -115,6 +123,9 @@ export default function SemanticSearch() {
                   <h5>Upload File</h5>
                 </Form.Label>
                 <Form.Control type="file" onChange={handleFileChange} />
+                {fileError && (
+                  <p className="error-text">{fileError}</p>
+                )}
               </Form.Group>
               {conversionSuccess && (
                 <p className="sts1">Doc Uploaded Successfully</p>
@@ -163,9 +174,11 @@ export default function SemanticSearch() {
             <Button variant="light" onClick={handleEnd}>End</Button>
             <br />
             <div>
-              {answers.map((answer, index) => (
+              {questions.map((q, index) => (
                 <div key={index}>
-                  <strong>Answer:</strong> {answer}
+                  <strong>Question:</strong> {q}
+                  <br />
+                  <strong>Answer:</strong> {answers[index]}
                   <br />
                 </div>
               ))}

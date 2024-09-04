@@ -19,6 +19,7 @@ export default function SemanticSearch() {
   const [uploadStatus, setUploadStatus] = useState("");
   const [submittingQuestion, setSubmittingQuestion] = useState(false);
   const [conversionSuccess, setConversionSuccess] = useState(false);
+  const [fileError, setFileError] = useState(""); // State for handling file errors
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -26,11 +27,17 @@ export default function SemanticSearch() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.size > 2 * 1024 * 1024) { // 2MB size limit
-      alert("File size exceeds 2MB. Please upload a smaller file.");
-      setSelectedFile(null);
-    } else {
-      setSelectedFile(file);
+    setFileError(""); // Reset file error state
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) { // 2MB size limit
+        setFileError("File size exceeds 2MB. Please upload a smaller file.");
+        setSelectedFile(null);
+      } else if (file.type !== "application/pdf") {
+        setFileError("Only PDF files are allowed.");
+        setSelectedFile(null);
+      } else {
+        setSelectedFile(file);
+      }
     }
   };
 
@@ -117,7 +124,14 @@ export default function SemanticSearch() {
                 <Form.Label>
                   <h5>Upload File</h5>
                 </Form.Label>
-                <Form.Control type="file" onChange={handleFileChange} />
+                <Form.Control
+                  type="file"
+                  onChange={handleFileChange}
+                  isInvalid={!!fileError} // Highlight the input if there's an error
+                />
+                {fileError && (
+                  <p className="error-text">{fileError}</p>
+                )}
               </Form.Group>
 
               {conversionSuccess && (
@@ -125,7 +139,7 @@ export default function SemanticSearch() {
               )}
               <br />
 
-              <Button variant="light" type="submit" disabled={uploading}>
+              <Button variant="light" type="submit" disabled={uploading || !!fileError}>
                 {uploading ? (
                   <>
                     <Spinner animation="border" size="sm" /> Uploading...

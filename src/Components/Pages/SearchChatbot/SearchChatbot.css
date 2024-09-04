@@ -57,6 +57,12 @@ button .spinner-border {
     margin-right: 5px;
 }
 
+.error-text{
+    color: red;
+    font-size: 12px;
+    margin: 5px;
+  }
+
 .sts1{
     font-weight: bold;
     color: rgb(74, 238, 41);
