@@ -1,48 +1,63 @@
-import { useState } from "react"; 
+import { useState, useEffect } from "react";
 import "./FolderMaintenance.css";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import NavigationBar from "../../NavigationBar/NavigationBar";
 import Footer from "../../Footer/Footer";
-import Modal from "react-bootstrap/Modal";
 import ListGroup from "react-bootstrap/ListGroup";
 
 export default function FolderMaintenance() {
-  const [show, setShow] = useState(false);
-  const [files, setFiles] = useState([
-    "file1.txt",
-    "file2.jpg",
-    "file3.pdf",
-    "file4.docx",
-  ]);
-  const [newFile, setNewFile] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResult, setSearchResult] = useState(null);
+  const [files, setFiles] = useState([]);
+  const [error, setError] = useState(null);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const handleAddFile = () => {
-    if (newFile && !files.includes(newFile)) {
-      setFiles([...files, newFile]);
-      setNewFile("");
-    }
+  // Fetch files from the backend
+  const fetchFiles = () => {
+    fetch('http://localhost:5000/files')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setFiles(data);
+        setError(null); // Clear any previous errors
+      })
+      .catch(error => {
+        setError("There was an error fetching the files!");
+        console.error("Fetch error:", error);
+      });
   };
 
-  const handleCreateButton = () => {
-    handleShow();
-  };
+  // Fetch files when the component mounts
+  useEffect(() => {
+    fetchFiles();
+  }, []);
 
+  // Handle file deletion
   const handleDeleteFile = (fileToDelete) => {
-    setFiles(files.filter((file) => file !== fileToDelete));
-  };
-
-  const handleSearch = () => {
-    const result = files.find((file) => file.toLowerCase() === searchTerm.toLowerCase());
-    setSearchResult(result || "File not found");
+    fetch('http://localhost:5000/delete-file', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ file_name: fileToDelete }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(() => {
+        setFiles(files.filter((file) => file !== fileToDelete));
+      })
+      .catch(error => {
+        setError("There was an error deleting the file!");
+        console.error("Delete error:", error);
+      });
   };
 
   return (
@@ -53,93 +68,31 @@ export default function FolderMaintenance() {
       <Container className="maincontainer">
         <Row className="rowcontainer">
           <Col className="containerBox1">
-            <Form>
-              <Form.Group controlId="selectOption" className="formgroup">
-                <Form.Label>
-                  <h5>User ID: User1 {}</h5>
-                </Form.Label>
-              </Form.Group>
-             
-              <Form.Group controlId="searchBox" className="mb-3">
-                <Form.Control
-                  type="text"
-                  placeholder="Search for a file"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </Form.Group>
-              <Button variant="light" onClick={handleSearch}>
-                Find
+            <div className="button-group mt-3">
+              <Button variant="light" onClick={fetchFiles}>
+                Refresh
               </Button>
-              
+            </div>
 
-              {/* Display Search Result */}
-              {searchResult && (
-                <div className="search-result mt-3">
-                  <h5>Search Result: {searchResult}</h5>
-                </div>
-              )}
-              
-
-              <div className="button-group mt-3">
-                <Button variant="light" onClick={handleCreateButton}>
-                  Create Project
-                </Button>
-                <Modal show={show} onHide={handleClose} centered>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Create Project</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Form controlId="formFileName">
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <Form.Label>Create a New Project</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Enter file name"
-                          value={newFile}
-                          onChange={(e) => setNewFile(e.target.value)}
-                          autoFocus
-                        />
-                      </Form.Group>
-                    </Form>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        handleAddFile();
-                        handleClose();
-                      }}
-                    >
-                      Create
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-                <Button variant="light" onClick={() => console.log(files)}>
-                  List Projects
-                </Button>
-              </div>
-            </Form>
+            {error && <div className="alert alert-danger mt-3">{error}</div>}
 
             <ListGroup className="mt-3">
-              {files.map((file, index) => (
-                <ListGroup.Item key={index} className="listgroupitem-section">
-                  {file}
-                  <Button
-                    variant="danger"
-                    className="delete-button"
-                    onClick={() => handleDeleteFile(file)}
-                  >
-                    Delete
-                  </Button>
-                </ListGroup.Item>
-              ))}
+              {files.length > 0 ? (
+                files.map((file, index) => (
+                  <ListGroup.Item key={index} className="listgroupitem-section">
+                    {file}
+                    <Button
+                      variant="danger"
+                      className="delete-button"
+                      onClick={() => handleDeleteFile(file)}
+                    >
+                      Delete
+                    </Button>
+                  </ListGroup.Item>
+                ))
+              ) : (
+                <ListGroup.Item>No files found</ListGroup.Item>
+              )}
             </ListGroup>
           </Col>
         </Row>
@@ -149,4 +102,3 @@ export default function FolderMaintenance() {
     </>
   );
 }
-

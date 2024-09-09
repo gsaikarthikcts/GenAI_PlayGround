@@ -63,7 +63,7 @@ button .spinner-border {
     margin: 5px;
   }
 
-.sts1{
-    font-weight: bold;
-    color: rgb(74, 238, 41);
+  .sts1{
+    margin: 3px;
+    color: greenyellow;
 }

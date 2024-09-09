@@ -65,7 +65,7 @@ export default function ProofRead() {
   return (
     <>
       <NavigationBar />
-      <h2 className="titleheading">Proofread and Correct Content</h2>
+      <h2 className="titleheading">Content Proofread & Translate</h2>
       <Container className="maincontainer">
         <Row className="rowcontainer">
           <Col xs={12} md={5} className="containerBox1">

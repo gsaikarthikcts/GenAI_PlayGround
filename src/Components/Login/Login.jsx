@@ -21,7 +21,7 @@ export default function Login() {
     const form = event.currentTarget;
     const emailInput = form.elements['floatingInput'];
     const emailValue = emailInput.value;
-     
+
 
     // Check validity of form and email
     if (form.checkValidity() === false || !emailValue.endsWith('@cognizant.com')) {
@@ -39,7 +39,23 @@ export default function Login() {
     setValidated(true);
     // Proceed with form submission or other actions here
     //window.location.href="/home";
-    navigate("/home");
+    //navigate("/home");
+    fetch('http://localhost:5000/log-email',
+     { // Adjust the URL to your backend endpoint
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: emailValue }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data); // Debugging line
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error('Error:', error); // Debugging line
+      });
   }
 
   return (
@@ -58,6 +74,7 @@ export default function Login() {
           noValidate
           validated={validated}
           onSubmit={handleSubmit}
+          autoComplete="off"
         >
           <h2 className="formtitle">Cognizant Gen AI</h2>
           <Form.Group className="mb-3" controlId="formBasicEmail">

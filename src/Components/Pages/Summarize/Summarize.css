@@ -23,8 +23,8 @@ button:disabled .spinner-border {
 }
 
 .sts1{
-    font-weight: bold;
-    color: rgb(74, 238, 41);
+    margin: 3px;
+    color: greenyellow;
 }
 
 .error-text{

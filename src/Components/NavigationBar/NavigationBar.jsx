@@ -22,15 +22,15 @@ export default function NavigationBar(){
           <Nav.Link as={Link} to='/home' className='navbartext1'>Home</Nav.Link>
 
             <NavDropdown title="Text"  className='navbartext' id="collapsible-nav-dropdown" >
-              <NavDropdown.Item as={Link} to="/proof_read">Proofread</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/proof_read">Content Proofread</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/Extract_Product_Attributes">Extract Product Attributes</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/summarize">Summarize</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/summarize">Doc Summarize</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/translate">Language Translation</NavDropdown.Item>
             </NavDropdown>
 
             <NavDropdown title="Semantic Search" className='navbartext' id="collapsible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/search_chatbot">Semantic Search Chatbot</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/semantic_search">Semantic Search</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/search_chatbot">Chatbot For Knowledge Article</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/semantic_search">Ask Your Own Doc</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/description" disabled>Description*</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/product_review">Product Review Summary</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/provider_search" disabled>Provider Search*</NavDropdown.Item>
@@ -39,7 +39,7 @@ export default function NavigationBar(){
             <NavDropdown title="Image" className='navbartext' id="collapsible-nav-dropdown">
               <NavDropdown.Item  as={Link} to="/image_text">Image to Text</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/text_image" disabled>Text to Image*</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/image_q&a">Image Q&A</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/image_q&a">Q & A On Image</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/describe_image" disabled>Describe Image*</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/generate_image" disabled>Generate Image*</NavDropdown.Item>
             </NavDropdown>
@@ -70,7 +70,7 @@ export default function NavigationBar(){
 
             <NavDropdown title="Others" className='navbartext custom-dropdown'  id="collapsible-nav-dropdown">
               <NavDropdown.Item as={Link} to="/manage_vector" disabled>Vector Database Maintenance*</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/folder_maintenance" disabled>Project Folder Maintenance*</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/folder_maintenance">Project Folder Maintenance</NavDropdown.Item>
             </NavDropdown>
 
             <Nav.Link as={Link} to='/GenAI_PlayGround' className='navbartext1' >Logout</Nav.Link>

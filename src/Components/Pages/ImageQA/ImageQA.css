@@ -25,6 +25,11 @@
 
 }
 
+.imageprev{
+    height: 100px;
+    width: 100px;
+  }
+
 .titleheading {
     padding-top: 20px;
     padding-left: 20px;
@@ -35,8 +40,8 @@
 }
 
 .sts1{
-    font-weight: bold;
-    color: rgb(74, 238, 41);
+    margin: 3px;
+    color: greenyellow;
 }
 
 .error-text{

@@ -76,7 +76,7 @@ export default function Translate() {
   return (
     <>
       <NavigationBar />
-      <h2 className="titleheading">Translate from One Language to Another</h2>
+      <h2 className="titleheading">Language Translation</h2>
       <br />
       <Container className="maincontainer">
         <Row className="rowcontainer">
