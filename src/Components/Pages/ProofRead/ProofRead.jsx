@@ -123,6 +123,8 @@ export default function ProofRead() {
           </Col>
 
           <Col xs={12} md={6} className="containerBox2">
+            <h4>Input Text</h4>
+            <p>{textInput}</p>
             <h4>Proof Reading Results</h4>
             <h5>
               {result || "Select a model, choose the action, and enter text for proof reading. Your output will be displayed here..."}

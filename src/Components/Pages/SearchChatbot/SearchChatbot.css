@@ -1,5 +1,3 @@
-/* SearchChatbot.css */
-
 .containerBox1 {
     background-color: rgba(255, 225, 225, 0.3);
     padding: 2% 2%;
@@ -57,13 +55,28 @@ button .spinner-border {
     margin-right: 5px;
 }
 
-.error-text{
+.error-text {
     color: red;
     font-size: 12px;
     margin: 5px;
-  }
+}
 
-  .sts1{
+.sts1 {
     margin: 3px;
     color: greenyellow;
+}
+
+.review-buttons button {
+    margin: 5px; /* Increase gap between buttons */
+    border-radius: 20px; /* Increase border-radius */
+    font-size: 10px;
+}
+
+.review-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+span{
+    align-items: center;
 }

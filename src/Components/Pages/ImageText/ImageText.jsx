@@ -54,6 +54,7 @@ export default function ImageText() {
       return;
     }
 
+  
     const formData = new FormData();
     const file = e.target.fileUpload.files[0]; // Access the file from the form
 

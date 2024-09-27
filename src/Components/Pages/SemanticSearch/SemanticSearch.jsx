@@ -26,6 +26,7 @@ export default function SemanticSearch() {
   };
 
   const handleFileChange = (e) => {
+    setAnswer("");
     const file = e.target.files[0];
     if (file) {
       if (file.size > 2 * 1024 * 1024) {
@@ -50,11 +51,11 @@ export default function SemanticSearch() {
       formData.append("pdf_file", selectedFile);
 
       try {
-        const response = await fetch("http://localhost:5000/upload-pdf", {
+        await fetch("http://localhost:5000/upload-pdf", {
           method: "POST",
           body: formData,
         });
-        const data = await response.json();
+        //const data = await response.json();
         setUploadStatus("Uploaded");
         setConversionSuccess(true);
       } catch (error) {

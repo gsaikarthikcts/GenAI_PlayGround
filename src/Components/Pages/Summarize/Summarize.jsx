@@ -50,11 +50,11 @@ export default function SemanticSearch() {
       formData.append("pdf_file", selectedFile);
 
       try {
-        const response = await fetch("http://localhost:5000/upload-pdf", {
+        await fetch("http://localhost:5000/upload-pdf", {
           method: "POST",
           body: formData,
         });
-        const data = await response.json();
+       // const data = await response.json();
         setUploadStatus("Uploaded");
         setConversionSuccess(true);
       } catch (error) {
@@ -73,7 +73,7 @@ export default function SemanticSearch() {
       setQuestions([]); // Clear previous questions
       setAnswers([]); // Clear previous answers
       try {
-        const response = await fetch("http://localhost:5000/ask-question", {
+        const response = await fetch("http://localhost:5000/ask-question-sum", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

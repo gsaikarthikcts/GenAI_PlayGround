@@ -7,4 +7,8 @@
     height: 64vh;
 }
 
-
+.robotimg{
+    height: 100%;
+    float: right;
+    margin-right: 100px;
+}

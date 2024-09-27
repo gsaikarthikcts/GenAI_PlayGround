@@ -21,6 +21,12 @@ export default function NavigationBar(){
           <Nav>
           <Nav.Link as={Link} to='/home' className='navbartext1'>Home</Nav.Link>
 
+            <NavDropdown title="LeaderBoard"  className='navbartext' id="collapsible-nav-dropdown" >
+              <NavDropdown.Item as={Link} to="/proof_read" disabled>LLM Models(Closed)*</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/Extract_Product_Attributes" disabled>LLM Models(Open Source)*</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/summarize" disabled>SLM(Open Source)*</NavDropdown.Item>
+            </NavDropdown>
+
             <NavDropdown title="Text"  className='navbartext' id="collapsible-nav-dropdown" >
               <NavDropdown.Item as={Link} to="/proof_read">Content Proofread</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/Extract_Product_Attributes">Extract Product Attributes</NavDropdown.Item>
